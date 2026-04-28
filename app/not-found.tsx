@@ -18,7 +18,8 @@ export default function NotFound() {
         </h2>
         
         <p className="text-gray-400 max-w-sm mx-auto font-medium text-lg leading-relaxed uppercase tracking-widest">
-          Lost in the darkness? Let us get you back to safety.
+          Lost in the darkness? 
+          Let us get you back to safety.
         </p>
 
         <div className="pt-8">
