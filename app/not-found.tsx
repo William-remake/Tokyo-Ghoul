@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function NotFound() {
   return (
-    <div className="fixed inset-0 bg-[#000000] z-[9999] flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+    <div className="fixed inset-0 bg-[#000000] z-9999 flex flex-col items-center justify-center text-center px-6 overflow-hidden">
       
       {/* SỐ 404 NỀN - Màu đỏ mờ đặc trưng */}
       <h1 className="absolute font-sans font-black text-[#df2531]/10 select-none pointer-events-none tracking-tighter italic"
