@@ -13,7 +13,7 @@ export default function Navbar() {
         const isActive = pathname === href;
         return `px-4 py-1.5 text-[13px] font-bold uppercase transition-all duration-200 ${
             isActive 
-            ? "bg-[#df2531] text-white rounded-sm" // Màu đỏ từ ảnh 2
+            ? "bg-[#df2531] text-white rounded-sm" 
             : "text-white hover:text-[#df2531]"
         }`;
     };
