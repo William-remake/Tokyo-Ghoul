@@ -9,7 +9,7 @@ export default function Footer() {
         {/* Cột 1: Logo/Name */}
         <div className="space-y-4">
           <h2 className="text-[#df2531] text-2xl font-black uppercase italic tracking-tighter">
-            Tokyo Ghoul
+            Tokyo Ghoul:re
           </h2>
         </div>
 

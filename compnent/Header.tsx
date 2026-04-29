@@ -25,7 +25,7 @@ export default function Navbar() {
                 {/* Logo Tokyo Ghoul - Style MOKOTO */}
                 <Link href="/" className="group">
                     <span className="font-black text-2xl tracking-tighter uppercase italic hover:text-[#df2531] transition-colors duration-300">
-                        Tokyo Ghoul
+                        Tokyo Ghoul:re
                     </span>
                 </Link>
 
