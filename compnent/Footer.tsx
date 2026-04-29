@@ -39,7 +39,6 @@ export default function Footer() {
                 <MailOutlined className="text-xs" /> Willston
               </a>
             </li>
-            <li className="hover:text-white transition-colors cursor-default">0901604619</li>
             <li className="hover:text-white transition-colors cursor-default">Bien Hoa, Dong Nai, VietNam</li>
           </ul>
         </div>
