@@ -50,11 +50,12 @@ export default function HomePage() {
         </div>
 
         <div className="relative z-20 flex flex-col items-start justify-center min-h-screen px-10 md:px-20 lg:px-32">
-          <h1 className="text-6xl md:text-7xl font-black uppercase italic tracking-tighter title-scan-effect drop-shadow-[0_5px_15px_rgba(223,37,49,0.3)]">
+          {/* Thêm pr-10 để tạo không gian cho độ nghiêng của chữ 'e', và w-fit để container không bó hẹp chữ */}
+          <h1 className="text-6xl md:text-7xl font-black uppercase italic tracking-tighter title-scan-effect drop-shadow-[0_5px_15px_rgba(223,37,49,0.3)] pr-10 w-fit overflow-visible">
             Tokyo Ghoul:re
           </h1>
           <p className="mt-4 text-gray-200 max-w-xl text-lg md:text-xl font-bold tracking-widest uppercase text-left">
-            Everything for the sake of a world where ghouls can live normally.
+            For a future where we no longer have to lose everything just to understand each other.
           </p>
         </div>
       </div>
