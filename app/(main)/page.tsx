@@ -115,7 +115,6 @@ export default function HomePage() {
             onClick={togglePlay}
           >
             <video
-              ref={videoRef} // Gắn Ref vào đây
               src="/trailer.mp4"
               autoPlay
               loop
