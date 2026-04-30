@@ -1,5 +1,5 @@
 import Header from "@/compnent/Header"
-import Footer from "@/compnent/Footer";
+import Footer from "@/compnent/Footer"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
