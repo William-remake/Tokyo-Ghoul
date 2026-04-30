@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 
-export default function Page() {
+export default function ArtistsPage() {
   const works = [
     { title: "The Tale of Longing for Sex", year: "2009", type: "Webcomic" },
     { title: "THE PENISMAN", year: "2010", type: "Webcomic" },
