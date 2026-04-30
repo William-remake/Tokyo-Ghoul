@@ -63,7 +63,7 @@ export default function Navbar() {
                     <Link href="/anime" onClick={() => setOpen(false)} className="px-4 py-3 text-sm font-bold uppercase text-white hover:text-[#df2531]">Anime</Link>
                     <Link href="/artists" onClick={() => setOpen(false)} className="px-4 py-3 text-sm font-bold uppercase text-white hover:text-[#df2531]">Artists</Link>
                     <Link href="/others" onClick={() => setOpen(false)} className="px-4 py-3 text-sm font-bold uppercase text-white hover:text-[#df2531]">Others</Link>
-                    <Link href="/creator" onClick={() => setOpen(false)} className="px-4 py-3 text-sm font-bold uppercase text-[#df2531]">Creator</Link>
+                    <Link href="/creators" onClick={() => setOpen(false)} className="px-4 py-3 text-sm font-bold uppercase text-[#df2531]">Creators</Link>
                 </div>
             )}
         </nav>
