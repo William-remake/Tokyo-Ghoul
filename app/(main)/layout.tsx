@@ -1,5 +1,6 @@
 import Header from "@/compnent/Header"
 import Footer from "@/compnent/Footer"
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,6 +13,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
 
         <Footer/>
+        
+        {/* Vercel Speed Insights component */}
+        <SpeedInsights />
       </body>
     </html>
   );
