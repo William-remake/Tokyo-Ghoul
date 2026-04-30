@@ -32,7 +32,7 @@ export default function CreatorsPage() {
       <div className="py-16 md:py-24 px-6 md:px-20 lg:px-32 border-b-2 border-black bg-gray-50">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter italic leading-none">
-            The <br /> Creators
+            The Creators
           </h1>
           <div className="h-1.5 md:h-2 w-16 md:w-24 bg-[#df2531] mt-6"></div>
           <p className="mt-6 text-sm md:text-xl font-bold text-gray-400 md:text-gray-500 uppercase tracking-[0.2em] md:tracking-[0.4em]">
