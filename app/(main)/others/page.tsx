@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -13,12 +13,14 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 const PRICE_PER_BOOK = 346476;
+const COMBO_PRICE = 5543616; // Giá cho Combo 16 tập
 
 // 1. Định nghĩa kiểu dữ liệu cho Book
 interface Book {
-  id: number;
+  id: number | string;
   title: string;
-  image: string;
+  image: string | string[]; // Chấp nhận cả chuỗi hoặc mảng chuỗi cho combo
+  isCombo?: boolean;
 }
 
 // 2. Định nghĩa kiểu dữ liệu cho Form Values
@@ -34,12 +36,28 @@ export default function GamePage() {
   const [isConfirmOpen, setIsConfirmOpen] = useState<boolean>(false);
   const [isInfoOpen, setIsInfoOpen] = useState<boolean>(false);
   
-  // Thay 'any' bằng interface Book hoặc null
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [form] = Form.useForm<OrderFormValues>();
   const [totalAmount, setTotalAmount] = useState<number>(PRICE_PER_BOOK);
 
+  // State quản lý việc chuyển đổi 3 ảnh cho Combo
+  const [comboIdx, setComboIdx] = useState(0);
+  const comboImages = [
+    "/combo vol 1-16 (1).jpg",
+    "/combo vol 1-16 (2).jpg",
+    "/combo vol 1-16 (3).jpg"
+  ];
+
+  // Logic tự động xoay vòng ảnh Combo mỗi 3 giây
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setComboIdx((prev) => (prev + 1) % comboImages.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [comboImages.length]);
+
   const bookList: Book[] = [
+    { id: "combo", title: "FULL COMBO VOL 1-16", image: comboImages, isCombo: true },
     { id: 1, title: "Tokyo Ghoul RE Vol 1", image: "/vol 1.jpg" },
     { id: 2, title: "Tokyo Ghoul RE Vol 2", image: "/vol 2.jpg" },
     { id: 3, title: "Tokyo Ghoul RE Vol 3", image: "/vol 3.jpg" },
@@ -48,6 +66,9 @@ export default function GamePage() {
 
   const handleBuyClick = (book: Book) => {
     setSelectedBook(book);
+    const initialPrice = book.isCombo ? COMBO_PRICE : PRICE_PER_BOOK;
+    setTotalAmount(initialPrice);
+    form.setFieldsValue({ quantity: 1, volume: book.title });
     setIsConfirmOpen(true);
   };
 
@@ -56,23 +77,24 @@ export default function GamePage() {
     setIsInfoOpen(true);
   };
 
-  // 3. Sửa 'any' ở changedValues
-  // Partial<OrderFormValues> nghĩa là chỉ chứa một vài trường đang thay đổi
-  const onValuesChange = (changedValues: Partial<OrderFormValues>) => {
-    if (changedValues.quantity !== undefined) {
-      setTotalAmount(changedValues.quantity * PRICE_PER_BOOK);
+  const onValuesChange = (changedValues: Partial<OrderFormValues>, allValues: OrderFormValues) => {
+    const isCurrentCombo = allValues.volume === "FULL COMBO VOL 1-16";
+    const basePrice = isCurrentCombo ? COMBO_PRICE : PRICE_PER_BOOK;
+    
+    if (changedValues.quantity !== undefined || changedValues.volume !== undefined) {
+      setTotalAmount(allValues.quantity * basePrice);
     }
   };
 
   const handleFinish = (values: OrderFormValues) => {
     const emailTo = "daongoc.phuongmy308@gmail.com"; 
-    const subject = encodeURIComponent(`Order: ${selectedBook?.title || "Book Order"}`);
+    const subject = encodeURIComponent(`Order: ${values.volume}`);
     
     const body = encodeURIComponent(
       `Họ tên: ${values.name}\n` +
       `Địa chỉ: ${values.address}\n` +
       `Số điện thoại: ${values.phone}\n` +
-      `Tập: ${values.volume}\n` +
+      `Sản phẩm: ${values.volume}\n` +
       `Số lượng: ${values.quantity}\n` +
       `Tổng tiền: ${totalAmount.toLocaleString()} VND`
     );
@@ -98,26 +120,19 @@ export default function GamePage() {
         </h1>
         <div className="h-2 w-24 bg-[#df2531] mt-6"></div>
       </div>
+      
       <div className="max-w-7xl mx-auto px-6 mt-16">
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-         
-          {/* Local Video Section */}
+          
           <div className="w-full lg:w-3/5">
             <div className="relative aspect-video border-4 border-black shadow-[15px_15px_0px_0px_#df2531] overflow-hidden bg-black">
-              <video
-                className="w-full h-full object-cover"
-                controls
-                autoPlay
-                loop
-                muted
-              >
+              <video className="w-full h-full object-cover" controls autoPlay loop muted>
                 <source src="/trailer game.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
             </div>
           </div>
 
-          {/* Game Information */}
           <div className="w-full lg:w-2/5 flex flex-col space-y-6">
             <div className="text-4xl font-black uppercase tracking-tighter leading-tight">
               <h2>TOKYO GHOUL:re</h2>
@@ -128,13 +143,11 @@ export default function GamePage() {
               <p className="text-lg font-bold italic text-gray-500 uppercase">
                 It may not be stylish, but... Live.
               </p>
-
               <p className="text-xl font-medium leading-relaxed border-l-4 border-black pl-6">
-                Eat or be eaten. <span className="font-black">TOKYO GHOUL:re [CALL to EXIST]</span> is a co-op survival action game that lets you experience the exciting world of Tokyo Ghoul and Tokyo Ghoul:re for yourself.
+                Eat or be eaten. <span className="font-black">TOKYO GHOUL:re [CALL to EXIST]</span> is a co-op survival action game.
               </p>
             </div>
 
-            {/* Tags */}
             <div className="flex flex-wrap gap-2 py-4">
               {["Co-op", "Survival", "Action", "Multiplayer"].map((tag) => (
                 <span key={tag} className="px-3 py-1 bg-black text-white text-[10px] font-black uppercase tracking-widest">
@@ -143,7 +156,6 @@ export default function GamePage() {
               ))}
             </div>
 
-            {/* Action Button */}
             <div className="pt-6">
               <Link
                 href="https://store.steampowered.com/app/756530/TOKYO_GHOULre_CALL_to_EXIST/"
@@ -159,11 +171,8 @@ export default function GamePage() {
 
       {/* Books Swiper */}
       <div className="max-w-7xl mx-auto px-6 mt-32 relative">
-        {/* Header cho phần Books */}
         <div className="py-20 px-6 md:px-20 lg:px-32 bg-white flex flex-col items-center justify-center text-center mb-16">
-          <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter italic">
-            Books
-          </h2>
+          <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter italic">Books</h2>
           <div className="h-2 w-24 bg-[#df2531] mt-6"></div>
         </div>
         <div className="relative group px-12">
@@ -178,11 +187,25 @@ export default function GamePage() {
           >
             {bookList.map((book) => (
               <SwiperSlide key={book.id}>
-                <div className="border-[3px] border-black rounded-[40px] p-8 flex flex-col items-center bg-white hover:border-[#df2531] group/card transition-all">
+                <div className={`border-[3px] border-black rounded-[40px] p-8 flex flex-col items-center bg-white hover:border-[#df2531] group/card transition-all ${book.isCombo ? 'ring-2 ring-[#df2531] border-[#df2531]' : ''}`}>
                   <div className="relative w-full h-56 mb-6">
-                    <Image src={book.image} alt={book.title} fill className="object-contain transition-transform group-hover/card:scale-105" />
+                    <Image 
+                      // Kiểm tra: nếu là combo thì lấy ảnh theo index comboIdx, ngược lại lấy ảnh đơn
+                      src={Array.isArray(book.image) ? book.image[comboIdx] : book.image} 
+                      alt={book.title} 
+                      fill 
+                      className="object-contain transition-all duration-500 group-hover/card:scale-105" 
+                    />
+                    {/* Chỉ hiện indicator nếu là combo */}
+                    {book.isCombo && (
+                      <div className="absolute -bottom-2.5 flex gap-1 justify-center w-full">
+                        {comboImages.map((_, i) => (
+                          <div key={i} className={`h-1 w-3 rounded-full ${i === comboIdx ? 'bg-[#df2531]' : 'bg-gray-200'}`} />
+                        ))}
+                      </div>
+                    )}
                   </div>
-                  <span className="px-6 py-2 border-2 border-black rounded-full font-bold uppercase text-xs mb-4 group-hover/card:bg-[#df2531] group-hover/card:text-white transition-all">
+                  <span className={`px-6 py-2 border-2 border-black rounded-full font-bold uppercase text-xs mb-4 group-hover/card:bg-[#df2531] group-hover/card:text-white transition-all ${book.isCombo ? 'bg-[#df2531] text-white border-[#df2531]' : ''}`}>
                     {book.title}
                   </span>
                   <button onClick={() => handleBuyClick(book)} className="px-8 py-2 bg-black text-white font-bold rounded-full hover:bg-[#df2531] uppercase text-xs">
@@ -232,8 +255,9 @@ export default function GamePage() {
             <div className="flex gap-4">
               <Form.Item name="volume" label="Select Vol" className="flex-1">
                 <Select>
+                  <Select.Option value="FULL COMBO VOL 1-16">Combo Vol 1-16</Select.Option>
                   {[...Array(16)].map((_, i) => (
-                    <Select.Option key={i+1} value={`Vol ${i+1}`}>Vol {i+1}</Select.Option>
+                    <Select.Option key={i+1} value={`Tokyo Ghoul RE Vol ${i+1}`}>Vol {i+1}</Select.Option>
                   ))}
                 </Select>
               </Form.Item>
