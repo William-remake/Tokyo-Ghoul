@@ -28,7 +28,7 @@ export default function HomePage() {
 
   // Dữ liệu nhân vật
   const characters = [
-    { name: "Ken Kaneki", image: "/kaneki.jpg" }, 
+    { name: "Haise Sasaki", image: "/Haise.jpg" }, 
     { name: "Touka Kirishima", image: "/touka.jpg" }, 
     { name: "Shuu Tsukiyama", image: "/shuu.jpg" }, 
   ];
