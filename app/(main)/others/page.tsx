@@ -149,7 +149,7 @@ export default function GamePage() {
             </div>
 
             <div className="flex flex-wrap gap-2 py-4">
-              {["Co-op", "Survival", "Action", "Multiplayer"].map((tag) => (
+              {["Action", "Anime", "Violent", "Gore", "Character Customization"].map((tag) => (
                 <span key={tag} className="px-3 py-1 bg-black text-white text-[10px] font-black uppercase tracking-widest">
                   {tag}
                 </span>
