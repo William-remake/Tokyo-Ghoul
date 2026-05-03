@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from "react"; // Thêm useRef và useState
 import Image from "next/image";
+import Link from "next/link";
 
 // Import Swiper React components và styles
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -29,7 +30,7 @@ export default function HomePage() {
   // Dữ liệu nhân vật
   const characters = [
     { name: "Haise Sasaki", image: "/Haise.jpg" }, 
-    { name: "Touka Kirishima", image: "/touka.jpg" }, 
+    { name: "Touka Kirishima", image: "/touka 2.jpg" }, 
     { name: "Shuu Tsukiyama", image: "/shuu.jpg" }, 
   ];
 
@@ -105,6 +106,17 @@ export default function HomePage() {
             </SwiperSlide>
           ))}
         </Swiper>
+
+        {/* PHẦN THÊM MỚI: NÚT MORE CHARACTERS */}
+        <div className="mt-16 flex justify-center">
+          <Link 
+            href="/characters" 
+            className="group relative px-12 py-4 bg-white border-2 border-black text-black font-black uppercase italic tracking-widest text-sm hover:text-white transition-all duration-300 overflow-hidden"
+          >
+            <span className="relative z-10">More Characters</span>
+            <div className="absolute inset-0 h-full w-0 bg-black transition-all duration-300 group-hover:w-full"></div>
+          </Link>
+        </div>
       </div>
 
       {/* -------------------- SECTION 3: TRAILER (ĐÃ THÊM NÚT) -------------------- */}

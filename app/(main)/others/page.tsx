@@ -113,7 +113,7 @@ export default function GamePage() {
         .ant-btn-primary { background-color: #df2531 !important; border-color: #df2531 !important; }
       `}</style>
 
-        {/* Header */}
+        {/* Game */}
       <div className="py-20 px-6 md:px-20 lg:px-32 bg-white flex flex-col items-center justify-center text-center">
         <h1 className="text-6xl md:text-8xl font-black uppercase tracking-tighter italic">
           The <br className="md:hidden" /> Game
