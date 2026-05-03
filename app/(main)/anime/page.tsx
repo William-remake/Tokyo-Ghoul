@@ -43,7 +43,7 @@ export default function AnimePage() {
             <span className="text-[#df2531] font-black uppercase tracking-[0.4em] text-xs">Featured Series</span>
           </div>
 
-          {/* Title chính - ĐÃ SỬA: Điều chỉnh leading và thêm pr-2 để không bị khuyết chữ italic */}
+          {/* Title chính */}
           <div className="relative animate-fade-in-right [animation-delay:200ms] pr-2">
             <h1 className="text-7xl md:text-9xl font-black uppercase title-scan-effect leading-[0.95] drop-shadow-2xl">
               Tokyo Ghoul:re
@@ -59,11 +59,16 @@ export default function AnimePage() {
 
           {/* Nút Watch Action - Hiệu ứng Hover mạnh mẽ hơn */}
           <div className="flex flex-col items-end gap-4 w-full animate-fade-in-right [animation-delay:600ms]">
-            <button className="group relative overflow-hidden w-full md:w-80 py-5 bg-[#df2531] text-white font-black uppercase tracking-[0.3em] italic text-xl transition-all duration-500 hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(223,37,49,0.3)]">
+            <a 
+              href="https://www.netflix.com/vn-en/title/80023687?s=a&trkid=13747225&shareType=Title&shareUuid=4913f4b2-8bcf-4df9-8d9c-45b75fc72b71&trg=cp&unifiedEntityIdEncoded=Video%3A80023687&vlang=en&clip=81910686" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center justify-center overflow-hidden w-full md:w-80 py-5 bg-[#df2531] text-white font-black uppercase tracking-[0.3em] italic text-xl transition-all duration-500 hover:scale-105 active:scale-95 shadow-[0_0_40px_rgba(223,37,49,0.3)] cursor-pointer text-center"
+            >
               {/* Hiệu ứng ánh sáng chạy qua khi hover */}
               <span className="absolute inset-0 w-full h-full bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 skew-x-12"></span>
               <span className="relative z-10">Watch Now</span>
-            </button>
+            </a>
 
             {/* Nút bật/tắt âm thanh */}
             <button 
