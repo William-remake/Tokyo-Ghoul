@@ -144,7 +144,7 @@ export default function GamePage() {
                 It may not be stylish, but... Live.
               </p>
               <p className="text-xl font-medium leading-relaxed border-l-4 border-black pl-6">
-                Eat or be eaten. <span className="font-black">TOKYO GHOUL:re [CALL to EXIST]</span> is a co-op survival action game.
+                Eat or be eaten. <span className="font-black">TOKYO GHOUL:re [CALL to EXIST]</span> is a co-op survival action game that lets you experience the exciting world of Tokyo Ghoul and Tokyo Ghoul:re for yourself.
               </p>
             </div>
 
