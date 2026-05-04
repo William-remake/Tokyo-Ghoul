@@ -52,9 +52,11 @@ export default function MangaPage() {
                 <p className="text-xs font-black uppercase tracking-widest text-white opacity-90">Chapter {MANGA_INFO.totalChapters} / Finished</p>
               </div>
             </div>
-            <button className="w-full py-4 bg-black text-white font-black uppercase tracking-tighter text-xl shadow-[6px_6px_0px_0px_#df2531] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all flex items-center justify-center gap-3">
+            <a href="https://mangaplus.shueisha.co.jp/titles/100177" target="_blank" rel="noopener noreferrer">
+              <button className="w-full py-4 bg-black text-white font-black uppercase tracking-tighter text-xl shadow-[6px_6px_0px_0px_#df2531] hover:shadow-none hover:translate-x-1 hover:translate-y-1 transition-all flex items-center justify-center gap-3">
               <SVG.Book /> Read Now
             </button>
+            </a>
           </div>
 
           {/* Right Side */}
