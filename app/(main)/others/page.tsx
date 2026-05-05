@@ -91,12 +91,12 @@ export default function GamePage() {
     const subject = encodeURIComponent(`Order: ${values.volume}`);
     
     const body = encodeURIComponent(
-      `Họ tên: ${values.name}\n` +
-      `Địa chỉ: ${values.address}\n` +
-      `Số điện thoại: ${values.phone}\n` +
-      `Sản phẩm: ${values.volume}\n` +
-      `Số lượng: ${values.quantity}\n` +
-      `Tổng tiền: ${totalAmount.toLocaleString()} VND`
+      `Name: ${values.name}\n` +
+      `Address: ${values.address}\n` +
+      `Phone number: ${values.phone}\n` +
+      `Products: ${values.volume}\n` +
+      `Quantity: ${values.quantity}\n` +
+      `Sum: ${totalAmount.toLocaleString()} VND`
     );
 
     window.location.href = `mailto:${emailTo}?subject=${subject}&body=${body}`;
@@ -149,7 +149,7 @@ export default function GamePage() {
             </div>
 
             <div className="flex flex-wrap gap-2 py-4">
-              {["Action", "Anime", "Violent", "Gore", "Character Customization"].map((tag) => (
+              {["Action", "Anime", "Violent", "Gore", "Character Customization", "Multiplayer", "Singleplayer", "Hack & Slash", "Co-op", "Horror", "JRPG", "Adventure", "Third Person", "Nudity"].map((tag) => (
                 <span key={tag} className="px-3 py-1 bg-black text-white text-[10px] font-black uppercase tracking-widest">
                   {tag}
                 </span>
